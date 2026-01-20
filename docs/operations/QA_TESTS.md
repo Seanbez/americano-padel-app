@@ -87,6 +87,14 @@
 - View Final Results screen
 - **Expected:** Small B-Bot logo at bottom (opacity 0.85)
 
+### TC-204: Home Screen Branding
+- Open app with no tournaments
+- **Expected:** B-Bot logo displays at top with "Powered by B-Bot Cloud" text
+
+### TC-205: Social Sharing Preview
+- Share app URL on WhatsApp
+- **Expected:** Preview shows "Padel Americana" title, "Powered by B-Bot Cloud" description, B-Bot logo image
+
 ---
 
 ## Related Documents

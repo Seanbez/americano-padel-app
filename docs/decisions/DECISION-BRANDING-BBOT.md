@@ -21,14 +21,17 @@ Integrate B-Bot Cloud branding into the application using Firebase Storage for l
 
 - **Firebase Storage Path:** `logo/B-Bot_Xero.jpg`
 - **Bucket:** `americano-padel-app.firebasestorage.app`
-- **Access Method:** Firebase Storage SDK's `getDownloadURL()`
+- **Access Method:** Direct public URL with token (SDK init not required)
+- **Full URL:** `https://firebasestorage.googleapis.com/v0/b/americano-padel-app.firebasestorage.app/o/logo%2FB-Bot_Xero.jpg?alt=media&token=cd0368b3-440d-41de-97db-89b7c7c745e7`
 
 ### Branding Surfaces
 
 | Surface | Placement | Logo Size | Notes |
 |---------|-----------|-----------|-------|
-| App Settings → About | Top of section | 64px height | Primary branding |
+| Home Screen (empty state) | Top of screen | 80px height | With "Powered by B-Bot Cloud" text |
+| App Settings → About | Top of section | 80px height | Primary branding |
 | Final Results Screen | Bottom footer | 40px height | Subtle, opacity 0.85 |
+| Social Sharing (OG tags) | Link preview | - | Shows B-Bot logo in WhatsApp/social |
 
 ### Attribution Tiles (Settings Screen)
 
@@ -46,10 +49,11 @@ Integrate B-Bot Cloud branding into the application using Firebase Storage for l
 
 ## Security Considerations
 
-- ✅ No hardcoded tokens or secrets in source code
-- ✅ Logo URL fetched dynamically via Firebase SDK
-- ✅ Graceful fallback if storage access fails
+- ✅ No hardcoded secrets in source code (token is public access token, not a secret)
+- ✅ Logo URL is static constant for reliability
+- ✅ Graceful fallback if image fails to load
 - ✅ No sensitive data exposed
+- ✅ Open Graph meta tags for social sharing
 
 ---
 
@@ -68,7 +72,10 @@ Integrate B-Bot Cloud branding into the application using Firebase Storage for l
 |------|---------|
 | `app_settings_screen.dart` | Added logo widget, promo tiles, footer |
 | `final_results_screen.dart` | Added branding footer widget |
+| `home_screen.dart` | Added logo and "Powered by B-Bot Cloud" to empty state |
 | `pubspec.yaml` | Added firebase_storage, url_launcher deps |
+| `web/index.html` | Added Open Graph meta tags for social sharing |
+| `web/manifest.json` | Updated app name and description |
 
 ### Dependencies Added
 

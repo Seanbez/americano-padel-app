@@ -73,6 +73,10 @@ lib/
     │   └── app_router.dart
     ├── theme/
     │   └── app_theme.dart
+    ├── services/
+    │   └── branding_service.dart      # B-Bot Cloud branding
+    ├── utils/
+    │   └── url_utils.dart             # URL launcher utilities
     └── features/
         ├── home/
         ├── settings/
@@ -94,6 +98,9 @@ lib/
 
 ## Key Services
 
+### BrandingService
+B-Bot Cloud logo and attribution. Uses static Firebase Storage URL.
+
 ### TimeRecommendationService
 Time-based tournament planning with serves→points mapping.
 
@@ -114,6 +121,17 @@ CRUD operations with local persistence, reset flows.
 | `tournamentsProvider` | FutureProvider | All tournaments |
 | `tournamentProvider` | FutureProvider.family | Single tournament |
 | `createTournamentProvider` | StateNotifierProvider | Wizard state |
+| `bbotLogoUrlProvider` | FutureProvider | B-Bot logo URL |
+| `brandingServiceProvider` | Provider | Branding service instance |
+
+---
+
+## Deployment
+
+| Platform | URL | Status |
+|----------|-----|--------|
+| Web (Production) | https://americano-padel-app.web.app | ✅ Live |
+| GitHub | https://github.com/Seanbez/americano-padel-app | ✅ Public |
 
 ---
 

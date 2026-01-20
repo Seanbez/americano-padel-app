@@ -18,6 +18,9 @@ This document logs all production deployments for the Americano App.
 | Date | Version | Environment | Deployed By | URL | Notes |
 |------|---------|-------------|-------------|-----|-------|
 | 2026-01-20 | 1.0.0 | Firebase Hosting | Manual | https://americano-padel-app.web.app | Initial deployment |
+| 2026-01-20 | 1.0.1 | Firebase Hosting | Manual | https://americano-padel-app.web.app | B-Bot branding added |
+| 2026-01-20 | 1.0.2 | Firebase Hosting | Manual | https://americano-padel-app.web.app | Fixed logo URL, removed duplicate FAB |
+| 2026-01-20 | 1.0.3 | Firebase Hosting | Manual | https://americano-padel-app.web.app | Updated social sharing metadata |
 
 ---
 
