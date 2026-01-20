@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/enums.dart';
+import '../../../services/branding_service.dart';
 import '../../tournaments/data/tournament_repository.dart';
 import '../../tournaments/domain/tournament.dart';
 
@@ -131,9 +132,32 @@ class _EmptyState extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // B-Bot Logo
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.network(
+                BrandingService.bbotLogoUrl,
+                height: 80,
+                fit: BoxFit.contain,
+                errorBuilder: (_, __, ___) => Icon(
+                  Icons.emoji_events_outlined,
+                  size: 80,
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Powered by B-Bot Cloud',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Colors.deepPurple,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(height: 24),
             Icon(
               Icons.emoji_events_outlined,
-              size: 96,
+              size: 64,
               color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
             ),
             const SizedBox(height: 24),

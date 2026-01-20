@@ -10,7 +10,7 @@ class BrandingService {
   /// B-Bot logo public URL from Firebase Storage
   /// Note: Using public URL since Firebase SDK requires initialization
   static const String bbotLogoUrl = 
-      'https://firebasestorage.googleapis.com/v0/b/americano-padel-app.firebasestorage.app/o/logo%2FB-Bot_Xero.jpg?alt=media';
+      'https://firebasestorage.googleapis.com/v0/b/americano-padel-app.firebasestorage.app/o/logo%2FB-Bot_Xero.jpg?alt=media&token=cd0368b3-440d-41de-97db-89b7c7c745e7';
   
   /// B-Bot Cloud website URL
   static const String bbotWebsiteUrl = 'https://b-bot.cloud';

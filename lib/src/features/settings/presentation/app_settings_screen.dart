@@ -208,58 +208,35 @@ class AppSettingsScreen extends ConsumerWidget {
   }
 }
 
-/// B-Bot logo widget with Firebase Storage fetch and fallback
-class _BbotLogoWidget extends ConsumerWidget {
+/// B-Bot logo widget - uses static URL directly
+class _BbotLogoWidget extends StatelessWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final logoUrlAsync = ref.watch(bbotLogoUrlProvider);
-    
+  Widget build(BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
-        child: logoUrlAsync.when(
-          loading: () => const SizedBox(
-            height: 64,
-            width: 64,
-            child: CircularProgressIndicator(strokeWidth: 2),
-          ),
-          error: (_, __) => const Icon(
-            Icons.auto_awesome,
-            size: 48,
-            color: Colors.deepPurple,
-          ),
-          data: (url) {
-            if (url == null) {
-              return const Icon(
-                Icons.auto_awesome,
-                size: 48,
-                color: Colors.deepPurple,
-              );
-            }
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                url,
-                height: 64,
-                fit: BoxFit.contain,
-                errorBuilder: (_, __, ___) => const Icon(
-                  Icons.auto_awesome,
-                  size: 48,
-                  color: Colors.deepPurple,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Image.network(
+            BrandingService.bbotLogoUrl,
+            height: 80,
+            fit: BoxFit.contain,
+            errorBuilder: (_, __, ___) => const Icon(
+              Icons.auto_awesome,
+              size: 48,
+              color: Colors.deepPurple,
+            ),
+            loadingBuilder: (_, child, loadingProgress) {
+              if (loadingProgress == null) return child;
+              return const SizedBox(
+                height: 80,
+                width: 80,
+                child: Center(
+                  child: CircularProgressIndicator(strokeWidth: 2),
                 ),
-                loadingBuilder: (_, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return const SizedBox(
-                    height: 64,
-                    width: 64,
-                    child: Center(
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    ),
-                  );
-                },
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );
