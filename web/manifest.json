@@ -1,11 +1,11 @@
 {
-    "name": "americano_app",
-    "short_name": "americano_app",
+    "name": "Padel Americana",
+    "short_name": "Padel Americana",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Padel Americana Tournament Manager - Powered by B-Bot Cloud",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

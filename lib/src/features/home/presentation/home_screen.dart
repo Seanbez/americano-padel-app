@@ -79,11 +79,6 @@ class HomeScreen extends ConsumerWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => context.go('/tournament/create'),
-        icon: const Icon(Icons.add),
-        label: const Text('New Tournament'),
-      ),
     );
   }
 
