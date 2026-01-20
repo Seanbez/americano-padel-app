@@ -64,6 +64,28 @@
 - [ ] Share results export
 - [ ] Navigation between screens
 - [ ] Data persistence
+- [ ] B-Bot branding display
+
+---
+
+## B-Bot Branding Tests
+
+### TC-200: Logo Display (Storage Allowed)
+- Open App Settings screen
+- **Expected:** B-Bot logo displays in About section
+
+### TC-201: Logo Fallback (Storage Denied)
+- Simulate storage permission denied
+- **Expected:** Fallback icon displays, no crash
+
+### TC-202: Promo Tiles Active
+- Tap "Designed by B-Bot Cloud" tile
+- **Expected:** Opens https://b-bot.cloud in external browser
+
+### TC-203: Final Results Branding
+- Complete a tournament
+- View Final Results screen
+- **Expected:** Small B-Bot logo at bottom (opacity 0.85)
 
 ---
 

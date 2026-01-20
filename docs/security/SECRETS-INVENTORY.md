@@ -75,3 +75,14 @@ This document inventories all secrets used by the Americano App project. **NO VA
 - No secrets in commit messages
 - No secrets in logs or chat
 - All secrets in approved secret managers only
+
+---
+
+## B-Bot Branding Integration (2026-01-20)
+
+**No new secrets added.**
+
+The B-Bot logo is fetched from Firebase Storage using SDK's `getDownloadURL()` method.
+- Storage path: `logo/B-Bot_Xero.jpg`
+- No hardcoded tokens in source code
+- Access controlled by Firebase Storage security rules

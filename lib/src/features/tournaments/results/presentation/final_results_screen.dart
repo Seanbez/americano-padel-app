@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/enums.dart';
+import '../../../../services/branding_service.dart';
 import '../../../players/domain/player.dart';
 import '../../data/tournament_repository.dart';
 import '../../domain/tournament.dart';
@@ -110,6 +111,10 @@ class _FinalResultsContent extends StatelessWidget {
               icon: const Icon(Icons.home),
               label: const Text('Back to Home'),
             ),
+            
+            // B-Bot branding footer
+            const SizedBox(height: 24),
+            const _BbotBrandingFooter(),
           ],
         ),
       ),
@@ -544,5 +549,44 @@ class _LeaderboardList extends StatelessWidget {
       default:
         return Colors.blueGrey;
     }
+  }
+}
+
+/// B-Bot branding footer for final results screen
+class _BbotBrandingFooter extends ConsumerWidget {
+  const _BbotBrandingFooter();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final logoUrlAsync = ref.watch(bbotLogoUrlProvider);
+    final theme = Theme.of(context);
+
+    return Column(
+      children: [
+        logoUrlAsync.when(
+          loading: () => const SizedBox.shrink(),
+          error: (_, __) => const SizedBox.shrink(),
+          data: (url) {
+            if (url == null) return const SizedBox.shrink();
+            return Opacity(
+              opacity: 0.85,
+              child: Image.network(
+                url,
+                height: 40,
+                fit: BoxFit.contain,
+                errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+              ),
+            );
+          },
+        ),
+        const SizedBox(height: 8),
+        Text(
+          'Powered by B-Bot Cloud',
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.outline,
+          ),
+        ),
+      ],
+    );
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../services/branding_service.dart';
+import '../../../utils/url_utils.dart';
 import '../../tournaments/data/tournament_repository.dart';
 
 /// Global application settings screen with data management options.
@@ -18,6 +20,11 @@ class AppSettingsScreen extends ConsumerWidget {
         children: [
           // About Section
           _buildSectionHeader(context, 'About'),
+          
+          // B-Bot Logo
+          _BbotLogoWidget(),
+          const SizedBox(height: 16),
+          
           const ListTile(
             leading: Icon(Icons.sports_tennis),
             title: Text('Padel Americana'),
@@ -27,6 +34,28 @@ class AppSettingsScreen extends ConsumerWidget {
             leading: Icon(Icons.info_outline),
             title: Text('Open-source tournament management'),
             subtitle: Text('For Padel Americana format'),
+          ),
+          
+          // B-Bot Branding Tiles
+          ListTile(
+            leading: const Icon(Icons.auto_awesome, color: Colors.deepPurple),
+            title: const Text('Designed by B-Bot Cloud'),
+            subtitle: const Text('Custom tournament apps & club tools'),
+            trailing: const Icon(Icons.open_in_new, size: 18),
+            onTap: () => UrlUtils.launchExternalUrl(
+              context,
+              BrandingService.bbotWebsiteUrl,
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.handshake, color: Colors.teal),
+            title: const Text('Need a custom app?'),
+            subtitle: const Text('Ask for Sean & Melanie Bezuidenhout • b-bot.cloud'),
+            trailing: const Icon(Icons.open_in_new, size: 18),
+            onTap: () => UrlUtils.launchExternalUrl(
+              context,
+              BrandingService.bbotWebsiteUrl,
+            ),
           ),
           const Divider(),
 
@@ -58,6 +87,11 @@ class AppSettingsScreen extends ConsumerWidget {
             ),
             onTap: () => _showClearAllDataDialog(context, ref),
           ),
+          
+          // Footer
+          const SizedBox(height: 32),
+          const _BbotFooter(),
+          const SizedBox(height: 16),
         ],
       ),
     );
@@ -171,5 +205,90 @@ class AppSettingsScreen extends ConsumerWidget {
         }
       }
     }
+  }
+}
+
+/// B-Bot logo widget with Firebase Storage fetch and fallback
+class _BbotLogoWidget extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final logoUrlAsync = ref.watch(bbotLogoUrlProvider);
+    
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: logoUrlAsync.when(
+          loading: () => const SizedBox(
+            height: 64,
+            width: 64,
+            child: CircularProgressIndicator(strokeWidth: 2),
+          ),
+          error: (_, __) => const Icon(
+            Icons.auto_awesome,
+            size: 48,
+            color: Colors.deepPurple,
+          ),
+          data: (url) {
+            if (url == null) {
+              return const Icon(
+                Icons.auto_awesome,
+                size: 48,
+                color: Colors.deepPurple,
+              );
+            }
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(
+                url,
+                height: 64,
+                fit: BoxFit.contain,
+                errorBuilder: (_, __, ___) => const Icon(
+                  Icons.auto_awesome,
+                  size: 48,
+                  color: Colors.deepPurple,
+                ),
+                loadingBuilder: (_, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return const SizedBox(
+                    height: 64,
+                    width: 64,
+                    child: Center(
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                  );
+                },
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+/// Footer widget for B-Bot branding
+class _BbotFooter extends StatelessWidget {
+  const _BbotFooter();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    
+    return InkWell(
+      onTap: () => UrlUtils.launchExternalUrl(
+        context,
+        BrandingService.bbotWebsiteUrl,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Text(
+          'Powered by B-Bot Cloud • b-bot.cloud',
+          textAlign: TextAlign.center,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.outline,
+          ),
+        ),
+      ),
+    );
   }
 }
