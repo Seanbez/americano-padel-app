@@ -17,7 +17,7 @@ This document logs all production deployments for the Americano App.
 
 | Date | Version | Environment | Deployed By | URL | Notes |
 |------|---------|-------------|-------------|-----|-------|
-| 2026-01-20 | 1.0.0 | Firebase Hosting | CI/CD | *pending* | Initial deployment |
+| 2026-01-20 | 1.0.0 | Firebase Hosting | Manual | https://americano-padel-app.web.app | Initial deployment |
 
 ---
 
@@ -48,8 +48,9 @@ firebase deploy --only hosting
 
 | Environment | URL | Purpose |
 |-------------|-----|---------|
-| Production | https://americano-app.web.app | Live site |
-| Preview | https://americano-app--pr-*.web.app | PR previews |
+| Production | https://americano-padel-app.web.app | Live site |
+| Production (alt) | https://americano-padel-app.firebaseapp.com | Alternate domain |
+| Preview | https://americano-padel-app--pr-*.web.app | PR previews |
 
 ---
 

@@ -32,6 +32,13 @@ This document inventories all secrets used by the Americano App project. **NO VA
 | Secret Name | Purpose | Required For |
 |-------------|---------|--------------|
 | `FIREBASE_SERVICE_ACCOUNT` | Service account JSON for Firebase deployment | GitHub Actions deploy |
+| `GITHUB_TOKEN` | Auto-provided by GitHub Actions | PR comments, deployments |
+
+## GitHub Repository Variables
+
+| Variable Name | Purpose | Required For |
+|---------------|---------|--------------|
+| `FIREBASE_PROJECT_ID` | Firebase project identifier | GitHub Actions deploy |
 
 ---
 
